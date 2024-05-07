@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "spring.datasource.dburl",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.dburl'"
+  },
+  {
+    "name": "spring.datasource.applicationurl",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.applicationurl'"
+  }
+]}
