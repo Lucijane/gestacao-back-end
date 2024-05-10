@@ -1,7 +1,11 @@
 # gestacao-back-end
 
+<<<<<<< HEAD
 Requistos da Aplicação 
  #Nome Completo:
+=======
+#Nome Completo:
+>>>>>>> 99af5f819e61f20e0f493170d36458fe5a5e20a1
 
 Deve conter pelo menos dois nomes.
 
@@ -29,7 +33,11 @@ Comprimento mínimo e máximo devem ser especificados.
 
 Deve ser uma data válida.
 
+<<<<<<< HEAD
 #Restrição de idade ( +18 anos)
+=======
+Restrição de idade ( +18 anos)
+>>>>>>> 99af5f819e61f20e0f493170d36458fe5a5e20a1
 
 Número de Telefone (opcional):
 
@@ -47,4 +55,8 @@ Aceitação dos Termos de Serviço:
 
 Deve haver uma caixa de seleção para indicar que o usuário leu e concorda com os termos de serviço da plataforma.
 
+<<<<<<< HEAD
 #Após cadastro, enviar link para confirmação no e-mail cadastrado
+=======
+Após cadastro, enviar link para confirmação no e-mail cadastrado
+>>>>>>> 99af5f819e61f20e0f493170d36458fe5a5e20a1

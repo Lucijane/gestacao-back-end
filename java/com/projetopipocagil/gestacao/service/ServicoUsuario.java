@@ -23,7 +23,11 @@ public class ServicoUsuario {
 	
 	
 
+<<<<<<< HEAD
 	/*public List<Usuario> findAll() {
+=======
+	public List<Usuario> findAll() {
+>>>>>>> 99af5f819e61f20e0f493170d36458fe5a5e20a1
 		return usuarioRepositorio.findAll();
 	}
 	
@@ -69,5 +73,9 @@ public class ServicoUsuario {
 		}
 		usuarioRepositorio.deleteById(usuarioId);
 	
+<<<<<<< HEAD
     }*/
+=======
+    }
+>>>>>>> 99af5f819e61f20e0f493170d36458fe5a5e20a1
 }
