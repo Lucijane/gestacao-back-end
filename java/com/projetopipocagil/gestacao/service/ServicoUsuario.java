@@ -1,81 +1,58 @@
 package com.projetopipocagil.gestacao.service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.projetopipocagil.data.UsuarioRepositorio;
-import com.projetopipocagil.gestacao.conection.ServicoExc;
+import com.projetopipocagil.dto.UsuarioDTO;
 import com.projetopipocagil.gestacao.models.Usuario;
-
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.Validator;
-
 
 @Service
 public class ServicoUsuario {
+
+	private static final Logger logger = LoggerFactory.getLogger(ServicoUsuario.class);
+
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
-	
-	
 
-<<<<<<< HEAD
-	/*public List<Usuario> findAll() {
-=======
-	public List<Usuario> findAll() {
->>>>>>> 99af5f819e61f20e0f493170d36458fe5a5e20a1
-		return usuarioRepositorio.findAll();
-	}
-	
-	public Usuario findById(Long usuarioId) throws ServicoExc {
-		Optional<Usuario> usuario = usuarioRepositorio.findById(usuarioId);
+	public List<UsuarioDTO> listarTodos() {
+		logger.info("Método listarTodos() chamado.");
 
-		return usuario.orElseThrow(() -> new ServicoExc(
-				"Objeto nÃo encontrado! Id: " + usuarioId + ", Tipo: " + Usuario.class.getName()));
-	}
-	
-	@Autowired
-    private Validator validator;
+		List<Usuario> usuarios = usuarioRepositorio.findAll();
+		logger.info("Total de usuários encontrados: {}", usuarios.size());
 
-    public Usuario salvarUsuario(Usuario usuario) {
-        Set<ConstraintViolation<Usuario>> violations = validator.validate(usuario);
-        if (!violations.isEmpty()) {
-            throw new ConstraintViolationException(violations);
-        }
-        return usuarioRepositorio.save(usuario);
-}
-	
+		List<UsuarioDTO> requestUsuarios = usuarios.stream().map(UsuarioDTO::new).collect(Collectors.toList());
 
-	public Usuario update(Long usuarioId, Usuario usuarioAtualizado) throws ServicoExc {
-		Usuario usuario = findById(usuarioId);
-		usuario.setNome(usuarioAtualizado.getNome());
-		usuario.setLogin(usuarioAtualizado.getLogin());
-		usuario.setSenha(usuarioAtualizado.getSenha());
-		usuario.setEmail(usuarioAtualizado.getEmail());
-		
-		return usuarioRepositorio.save(usuario);
+		logger.info("Total de RequestUsuario mapeados: {}", requestUsuarios.size());
+
+		return requestUsuarios;
 	}
 
-	public Usuario create(Usuario usuarioNovo) {
-		usuarioNovo.setId(0);
-		return usuarioRepositorio.save(usuarioNovo);
+	public void inserir(UsuarioDTO usuario) {
+		Usuario usuarioEntidade = new Usuario(usuario);
+		usuarioRepositorio.save(usuarioEntidade);
 	}
 
-	public void delete(Long usuarioId) {
-		try {
-			findById(usuarioId);
-		} catch (ServicoExc e) {
-			
-		}
-		usuarioRepositorio.deleteById(usuarioId);
+	public UsuarioDTO alterar(UsuarioDTO usuario) {
+		Usuario usuarioEntidade = new Usuario(usuario);
+		return new UsuarioDTO(usuarioRepositorio.save(usuarioEntidade));
+	}
+
+	public void excluir(Long id) {
+		Usuario usuario = usuarioRepositorio.findById(id).get();
+		usuarioRepositorio.delete(usuario);
+	}
+
+	public UsuarioDTO buscarId(Long id) {
+		return new UsuarioDTO(usuarioRepositorio.findById(id).get());
+	}
+
 	
-<<<<<<< HEAD
-    }*/
-=======
-    }
->>>>>>> 99af5f819e61f20e0f493170d36458fe5a5e20a1
+
 }
